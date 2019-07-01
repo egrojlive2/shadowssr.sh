@@ -625,7 +625,7 @@ install_prepare_password(){
     #ingresar la conraseña para la config
     #echo "Please enter password for ${software[${selected}-1]}"
     #read -p "(Default password: teddysun.com):" shadowsockspwd
-    shadowsockspwd='jorge' #password ssr
+    shadowsockspwd='jorge2019' #password ssr
     [ -z "${shadowsockspwd}" ] && shadowsockspwd="teddysun.com"
     echo
     echo "password = ${shadowsockspwd}"
