@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
+#insshadvers='4'
+#shadowsocksport='8388'
 #
 # Auto install Shadowsocks Server (all version)
 #
@@ -605,7 +607,7 @@ install_select(){
     done
     #seleccionar version
     #read -p "Please enter a number (Default ${software[0]}):" selected
-    selected='2' #seleccionado aut ssr
+    selected=$insshadvers #seleccionado aut ssr
     [ -z "${selected}" ] && selected="1"
     case "${selected}" in
         1|2|3|4)
@@ -639,7 +641,7 @@ install_prepare_port() {
     #ingresar numero de puerto
     #echo -e "Please enter a port for ${software[${selected}-1]} [1-65535]"
     #read -p "(Default port: ${dport}):" shadowsocksport
-    shadowsocksport='8887'
+    #shadowsocksport='8887'
     [ -z "${shadowsocksport}" ] && shadowsocksport=${dport}
     expr ${shadowsocksport} + 1 &>/dev/null
     if [ $? -eq 0 ]; then
@@ -665,8 +667,8 @@ install_prepare_cipher(){
             hint="${common_ciphers[$i-1]}"
             echo -e "${green}${i}${plain}) ${hint}"
         done
-        read -p "Which cipher you'd select(Default: ${common_ciphers[0]}):" pick
-        #pick='12'
+        #read -p "Which cipher you'd select(Default: ${common_ciphers[0]}):" pick
+        pick='16'
         [ -z "$pick" ] && pick=1
         expr ${pick} + 1 &>/dev/null
         if [ $? -ne 0 ]; then
@@ -701,7 +703,8 @@ install_prepare_cipher(){
             hint="${go_ciphers[$i-1]}"
             echo -e "${green}${i}${plain}) ${hint}"
         done
-        read -p "Which cipher you'd select(Default: ${go_ciphers[0]}):" pick
+        #read -p "Which cipher you'd select(Default: ${go_ciphers[0]}):" pick
+        pick='8'
         [ -z "$pick" ] && pick=1
         expr ${pick} + 1 &>/dev/null
         if [ $? -ne 0 ]; then
@@ -784,8 +787,10 @@ install_prepare_libev_obfs(){
     if autoconf_version || centosversion 6; then
         while true
         do
+            #elegir si insalar simpe-obfs
         echo -e "Do you want install simple-obfs for ${software[${selected}-1]}? [y/n]"
-        read -p "(default: n):" libev_obfs
+        #read -p "(default: n):" libev_obfs
+        libev_obfs=n
         [ -z "$libev_obfs" ] && libev_obfs=n
         case "${libev_obfs}" in
             y|Y|n|N)
@@ -1088,6 +1093,7 @@ install_completed_libev(){
 
 qr_generate_python(){
     if [ "$(command -v qrencode)" ]; then
+        #generar qr echo -n "ss://chacha20:prueba@80.211.55.183:8388" | base64
         local tmp=$(echo -n "${shadowsockscipher}:${shadowsockspwd}@$(get_ip):${shadowsocksport}" | base64 -w0)
         local qr_code="ss://${tmp}"
         echo
@@ -1133,6 +1139,7 @@ qr_generate_libev(){
         echo
         echo "Your QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients)"
         echo -e "${green} ${qr_code} ${plain}"
+        #generar png qr echo -n "jorge" | qrencode -s8 -o ~/qr.png
         echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_libev_qr.png
         echo "Your QR Code has been saved as a PNG file path:"
         echo -e "${green} ${cur_dir}/shadowsocks_libev_qr.png ${plain}"
@@ -1382,9 +1389,25 @@ uninstall_shadowsocks(){
         fi
     fi
 }
+#paso 3
+install_check(){
+    if check_sys packageManager yum || check_sys packageManager apt; then
+        if centosversion 5; then
+            return 1
+        fi
+        return 0
+    else
+        return 1
+    fi
+}
+#paso 4
 
 # Initialization step
 action=$1
+insshadvers=$2
+shadowsocksport=$3
+shadowsockspwd=$4
+shadowsockscipher=$5
 [ -z $1 ] && action=install
 case "${action}" in
     install|uninstall)
