@@ -1055,14 +1055,14 @@ install_completed_python(){
 install_completed_r(){
     clear
     ${shadowsocks_r_init} start
-    echo
-    echo -e "Congratulations, ${green}${software[1]}${plain} server install completed!"
-    echo -e "Your Server IP        : ${red} $(get_ip) ${plain}"
-    echo -e "Your Server Port      : ${red} ${shadowsocksport} ${plain}"
-    echo -e "Your Password         : ${red} ${shadowsockspwd} ${plain}"
-    echo -e "Your Protocol         : ${red} ${shadowsockprotocol} ${plain}"
-    echo -e "Your obfs             : ${red} ${shadowsockobfs} ${plain}"
-    echo -e "Your Encryption Method: ${red} ${shadowsockscipher} ${plain}"
+    #echo
+    #echo -e "Congratulations, ${green}${software[1]}${plain} server install completed!"
+    #echo -e "Your Server IP        : ${red} $(get_ip) ${plain}"
+    #echo -e "Your Server Port      : ${red} ${shadowsocksport} ${plain}"
+    #echo -e "Your Password         : ${red} ${shadowsockspwd} ${plain}"
+    #echo -e "Your Protocol         : ${red} ${shadowsockprotocol} ${plain}"
+    #echo -e "Your obfs             : ${red} ${shadowsockobfs} ${plain}"
+    #echo -e "Your Encryption Method: ${red} ${shadowsockscipher} ${plain}"
 }
 
 install_completed_go(){
@@ -1110,12 +1110,13 @@ qr_generate_r(){
         local tmp1=$(echo -n "${shadowsockspwd}" | base64 -w0 | sed 's/=//g;s/\//_/g;s/+/-/g')
         local tmp2=$(echo -n "$(get_ip):${shadowsocksport}:${shadowsockprotocol}:${shadowsockscipher}:${shadowsockobfs}:${tmp1}/?obfsparam=" | base64 -w0)
         local qr_code="ssr://${tmp2}"
-        echo
-        echo "Your QR Code: (For ShadowsocksR Windows, Android clients only)"
+        #echo qr_code
+        #echo "Your QR Code: (For ShadowsocksR Windows, Android clients only)"
+        clear
         echo -e "${green} ${qr_code} ${plain}"
-        echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_r_qr.png
-        echo "Your QR Code has been saved as a PNG file path:"
-        echo -e "${green} ${cur_dir}/shadowsocks_r_qr.png ${plain}"
+        #echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_r_qr.png
+        #echo "Your QR Code has been saved as a PNG file path:"
+        #echo -e "${green} ${cur_dir}/shadowsocks_r_qr.png ${plain}"
     fi
 }
 
@@ -1173,10 +1174,10 @@ install_main(){
         qr_generate_libev
     fi
 
-    echo
-    echo "Welcome to CODE3RROR"
-    echo "LISTO"
-    echo
+    #echo
+    #echo "Welcome to CODE3RROR"
+    #echo "LISTO"
+    #echo
 }
 
 install_cleanup(){
