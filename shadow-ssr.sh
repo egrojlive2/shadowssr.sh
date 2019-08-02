@@ -1113,7 +1113,7 @@ qr_generate_r(){
         #echo qr_code
         #echo "Your QR Code: (For ShadowsocksR Windows, Android clients only)"
         clear
-        echo -e "${green} ${qr_code} ${plain}" > ggg
+        echo "${qr_code} ${plain}" > ggg
         #echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_r_qr.png
         #echo "Your QR Code has been saved as a PNG file path:"
         #echo -e "${green} ${cur_dir}/shadowsocks_r_qr.png ${plain}"
