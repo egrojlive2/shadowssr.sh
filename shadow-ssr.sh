@@ -1044,12 +1044,12 @@ install_shadowsocks_libev_obfs(){
 install_completed_python(){
     clear
     ${shadowsocks_python_init} start
-    echo
-    echo -e "Congratulations, ${green}${software[0]}${plain} server install completed!"
-    echo -e "Your Server IP        : ${red} $(get_ip) ${plain}"
-    echo -e "Your Server Port      : ${red} ${shadowsocksport} ${plain}"
-    echo -e "Your Password         : ${red} ${shadowsockspwd} ${plain}"
-    echo -e "Your Encryption Method: ${red} ${shadowsockscipher} ${plain}"
+    #echo
+    #echo -e "Congratulations, ${green}${software[0]}${plain} server install completed!"
+    #echo -e "Your Server IP        : ${red} $(get_ip) ${plain}"
+    #echo -e "Your Server Port      : ${red} ${shadowsocksport} ${plain}"
+    #echo -e "Your Password         : ${red} ${shadowsockspwd} ${plain}"
+    #echo -e "Your Encryption Method: ${red} ${shadowsockscipher} ${plain}"
 }
 
 install_completed_r(){
@@ -1068,27 +1068,27 @@ install_completed_r(){
 install_completed_go(){
     clear
     ${shadowsocks_go_init} start
-    echo
-    echo -e "Congratulations, ${green}${software[2]}${plain} server install completed!"
-    echo -e "Your Server IP        : ${red} $(get_ip) ${plain}"
-    echo -e "Your Server Port      : ${red} ${shadowsocksport} ${plain}"
-    echo -e "Your Password         : ${red} ${shadowsockspwd} ${plain}"
-    echo -e "Your Encryption Method: ${red} ${shadowsockscipher} ${plain}"
+    #echo
+    #echo -e "Congratulations, ${green}${software[2]}${plain} server install completed!"
+    #echo -e "Your Server IP        : ${red} $(get_ip) ${plain}"
+    #echo -e "Your Server Port      : ${red} ${shadowsocksport} ${plain}"
+    #echo -e "Your Password         : ${red} ${shadowsockspwd} ${plain}"
+    #echo -e "Your Encryption Method: ${red} ${shadowsockscipher} ${plain}"
 }
 
 install_completed_libev(){
     clear
     ldconfig
     ${shadowsocks_libev_init} start
-    echo
-    echo -e "Congratulations, ${green}${software[3]}${plain} server install completed!"
-    echo -e "Your Server IP        : ${red} $(get_ip) ${plain}"
-    echo -e "Your Server Port      : ${red} ${shadowsocksport} ${plain}"
-    echo -e "Your Password         : ${red} ${shadowsockspwd} ${plain}"
+    #echo
+    #echo -e "Congratulations, ${green}${software[3]}${plain} server install completed!"
+    #echo -e "Your Server IP        : ${red} $(get_ip) ${plain}"
+    #echo -e "Your Server Port      : ${red} ${shadowsocksport} ${plain}"
+    #echo -e "Your Password         : ${red} ${shadowsockspwd} ${plain}"
     if [ "$(command -v obfs-server)" ]; then
-    echo -e "Your obfs             : ${red} ${shadowsocklibev_obfs} ${plain}"
+    #echo -e "Your obfs             : ${red} ${shadowsocklibev_obfs} ${plain}"
     fi
-    echo -e "Your Encryption Method: ${red} ${shadowsockscipher} ${plain}"
+    #echo -e "Your Encryption Method: ${red} ${shadowsockscipher} ${plain}"
 }
 
 qr_generate_python(){
@@ -1096,12 +1096,12 @@ qr_generate_python(){
         #generar qr echo -n "ss://chacha20:prueba@80.211.55.183:8388" | base64
         local tmp=$(echo -n "${shadowsockscipher}:${shadowsockspwd}@$(get_ip):${shadowsocksport}" | base64 -w0)
         local qr_code="ss://${tmp}"
-        echo
-        echo "Your QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients)"
-        echo -e "${green} ${qr_code} ${plain}"
-        echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_python_qr.png
-        echo "Your QR Code has been saved as a PNG file path:"
-        echo -e "${green} ${cur_dir}/shadowsocks_python_qr.png ${plain}"
+        #echo
+        #echo "Your QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients)"
+        echo $qr_code Z ggg
+        #echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_python_qr.png
+        #echo "Your QR Code has been saved as a PNG file path:"
+        #echo -e "${green} ${cur_dir}/shadowsocks_python_qr.png ${plain}"
     fi
 }
 
@@ -1125,12 +1125,12 @@ qr_generate_go(){
     if [ "$(command -v qrencode)" ]; then
         local tmp=$(echo -n "${shadowsockscipher}:${shadowsockspwd}@$(get_ip):${shadowsocksport}" | base64 -w0)
         local qr_code="ss://${tmp}"
-        echo
-        echo "Your QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients)"
-        echo -e "${green} ${qr_code} ${plain}"
-        echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_go_qr.png
-        echo "Your QR Code has been saved as a PNG file path:"
-        echo -e "${green} ${cur_dir}/shadowsocks_go_qr.png ${plain}"
+        #echo
+        #echo "Your QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients)"
+        echo $qr_code > ggg
+        #echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_go_qr.png
+        #echo "Your QR Code has been saved as a PNG file path:"
+        #echo -e "${green} ${cur_dir}/shadowsocks_go_qr.png ${plain}"
     fi
 }
 
@@ -1138,13 +1138,13 @@ qr_generate_libev(){
     if [ "$(command -v qrencode)" ]; then
         local tmp=$(echo -n "${shadowsockscipher}:${shadowsockspwd}@$(get_ip):${shadowsocksport}" | base64 -w0)
         local qr_code="ss://${tmp}"
-        echo
-        echo "Your QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients)"
-        echo -e "${green} ${qr_code} ${plain}"
+        #echo
+        #echo "Your QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients)"
+        echo $qr_code > ggg
         #generar png qr echo -n "jorge" | qrencode -s8 -o ~/qr.png
-        echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_libev_qr.png
-        echo "Your QR Code has been saved as a PNG file path:"
-        echo -e "${green} ${cur_dir}/shadowsocks_libev_qr.png ${plain}"
+        #echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_libev_qr.png
+        #echo "Your QR Code has been saved as a PNG file path:"
+        #echo -e "${green} ${cur_dir}/shadowsocks_libev_qr.png ${plain}"
     fi
 }
 
