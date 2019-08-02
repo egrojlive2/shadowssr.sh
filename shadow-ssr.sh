@@ -1086,9 +1086,9 @@ install_completed_libev(){
     #echo -e "Your Server Port      : ${red} ${shadowsocksport} ${plain}"
     #echo -e "Your Password         : ${red} ${shadowsockspwd} ${plain}"
     if [ "$(command -v obfs-server)" ]; then
-    #echo -e "Your obfs             : ${red} ${shadowsocklibev_obfs} ${plain}"
+    echo -e "Your obfs             : ${red} ${shadowsocklibev_obfs} ${plain}"
     fi
-    #echo -e "Your Encryption Method: ${red} ${shadowsockscipher} ${plain}"
+    echo -e "Your Encryption Method: ${red} ${shadowsockscipher} ${plain}"
 }
 
 qr_generate_python(){
@@ -1098,7 +1098,7 @@ qr_generate_python(){
         local qr_code="ss://${tmp}"
         #echo
         #echo "Your QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients)"
-        echo $qr_code Z ggg
+        echo $qr_code > ggg
         #echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_python_qr.png
         #echo "Your QR Code has been saved as a PNG file path:"
         #echo -e "${green} ${cur_dir}/shadowsocks_python_qr.png ${plain}"
@@ -1265,8 +1265,9 @@ uninstall_shadowsocks_r(){
 }
 
 uninstall_shadowsocks_go(){
-    printf "Are you sure uninstall ${red}${software[2]}${plain}? [y/n]\n"
-    read -p "(default: n):" answer
+   # printf "Are you sure uninstall ${red}${software[2]}${plain}? [y/n]\n"
+    #read -p "(default: n):" answer
+    answer=y
     [ -z ${answer} ] && answer="n"
     if [ "${answer}" == "y" ] || [ "${answer}" == "Y" ]; then
         ${shadowsocks_go_init} status > /dev/null 2>&1
