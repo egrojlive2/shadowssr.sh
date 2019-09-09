@@ -474,7 +474,7 @@ elif [ "${selected}" == "2" ]; then
     "server_ipv6":"::",
     "server_port":${shadowsocksport},
     "local_address":"127.0.0.1",
-    "local_port":1080,
+    "local_port":1081,
     "password":"${shadowsockspwd}",
     "timeout":120,
     "method":"${shadowsockscipher}",
@@ -496,7 +496,7 @@ elif [ "${selected}" == "3" ]; then
 {
     "server":"0.0.0.0",
     "server_port":${shadowsocksport},
-    "local_port":1080,
+    "local_port":1082,
     "password":"${shadowsockspwd}",
     "method":"${shadowsockscipher}",
     "timeout":300
