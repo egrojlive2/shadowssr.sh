@@ -2,22 +2,51 @@
 #
 # Dropbear & OpenSSH ========================
 #
-data=( `ps aux | grep -i dropbear | awk '{print $2}'`)
- echo "=============================================="
- echo "Usuarios Conectados en [Dropbear]"
- echo "[Buscando, Espere...]"
- for PID in "${data[@]}"
- do
- NUM1=$(cat /var/log/auth.log | grep -i dropbear | grep -i "Password auth succeeded" | grep "dropbear\[$PID\]" | wc -l)
- USER=$(cat /var/log/auth.log | grep -i dropbear | grep -i "Password auth succeeded" | grep "dropbear\[$PID\]" | awk '{print $10}')
- IP=$(cat /var/log/auth.log | grep -i dropbear | grep -i "Password auth succeeded" | grep "dropbear\[$PID\]" | awk '{print $12}')
-    if [ $NUM1 -eq 1 ];
- then
-#echo "[PID] $PID - [Usuario]: $USER"
-  echo "[TOTAL Conectados - $USER]: ► $NUM1"
- fi
- done
-echo "---"
+totalc=( `ps aux | grep -i dropbear | awk '{print $2}' | wc -w | grep -v root`);
+data=( `ps aux | grep -i dropbear | awk '{print $2}'`);
+
+echo -e '\e[42m==================================='
+echo -e '\e[42m\e[1;37m        BIENVENIDO AL SCRIPT VPS DE JORGE         \n===================================\e[40m \n \n \n \e[0;31mESTE SCRIPT AUN ESTA EN PRUEBA USALO BAJO TU PROPIA RESPONSABILIDAD \n \e[1;37;m'
 echo "=============================================="
-echo "VPS - Dropbear"
+echo "-----------Usuarios Dropbear-----------";
+echo -e '\e[1;37m\n\e[42m             usuarios logueados         ' $((totalc -2)) '   \e[1;37m \e[40m'
+for PID in "${data[@]}"
+do
+        #echo "check $PID";
+        NUM1=`cat /var/log/auth.log | grep -i dropbear | grep -i "Password auth succeeded" | grep "dropbear\[$PID\]" | wc -l`;
+        USER=`cat /var/log/auth.log | grep -i dropbear | grep -i "Password auth succeeded" | grep "dropbear\[$PID\]" | awk '{print $10}'`;
+        IP=`cat /var/log/auth.log | grep -i dropbear | grep -i "Password auth succeeded" | grep "dropbear\[$PID\]" | awk '{print $12}'`;
+        if [ $NUM1 -eq 1 ]; then
+                echo '=======Usuario:  ' $USER 'CONEXIONES : ' $NUM1;
+
+        fi
+done
+echo "---";
+
+data=( `ps aux | grep "\[priv\]" | sort -k 72 | awk '{print $2}'`);
+
+
+
+echo "Usuarios [OpenSSH]";
+echo "[x]";
+TOTT=0
+for PID in "${data[@]}"
+do
+        #echo "check $PID";
+        NUM2=`cat /var/log/auth.log | grep -i sshd | grep -i "Accepted password for" | grep "sshd\[$PID\]" | wc -l`;
+        USER=`cat /var/log/auth.log | grep -i sshd | grep -i "Accepted password for" | grep "sshd\[$PID\]" | awk '{print $9}'`;
+        IP=`cat /var/log/auth.log | grep -i sshd | grep -i "Accepted password for" | grep "sshd\[$PID\]" | awk '{print $11}'`;
+        if [ $NUM2 -eq 1 ]; then
+                echo "[PID] $PID - [Usuario]: $USER";
+                echo "[TOTAL en OpenSSH]: $NUM2";
+
+        fi
+done
+
+
+
+echo "=============================================="
+echo "usuarios en el sistema :"
+grep /home/ /etc/passwd | grep -v syslog | cut -d ":" -f1 | grep -v ntp | grep -v debian
+echo "-------------CODEERROR-----------";
 echo "=============================================="
