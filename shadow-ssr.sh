@@ -457,7 +457,7 @@ if   [ "${selected}" == "1" ]; then
     "server":"0.0.0.0",
     "server_port":${shadowsocksport},
     "local_address":"127.0.0.1",
-    "local_port":1080,
+    "local_port":1084,
     "password":"${shadowsockspwd}",
     "timeout":300,
     "method":"${shadowsockscipher}",
