@@ -1,9 +1,9 @@
 #!/bin/bash
-
-totalc=( `ps aux | grep -i dropbear | awk '{print $2}' | wc -w | grep -v root`);
+drp=( `ps aux | grep -i dropbear | awk '{print $2}' | wc -w | grep -v root`);
+sh=( `sudo ps aux | grep sshd | cut -d " " -f 1 | grep -v sshd | grep -v root | wc -w`);
 data=( `ps aux | grep -i dropbear | awk '{print $2}'`);
-
-echo 'USUARIOS LOGUEADOS DROPBEAR   ' $((totalc -2))
+#echo 'USUARIOS LOGUEADOS EN EL SISTEMA   ' $((todos))
+echo 'USUARIOS LOGUEADOS DROPBEAR   ' $((drp -2))
 echo 'usuarios  -  conexiones'
 for PID in "${data[@]}"
 do
@@ -14,27 +14,12 @@ do
                 echo $USER ':' $NUM1;
         fi
 done
-
-data=( `ps aux | grep "\[priv\]" | sort -k 72 | awk '{print $2}'`);
-
-
-
-echo "Usuarios [OpenSSH]";
-echo "[x]";
-TOTT=0
-for PID in "${data[@]}"
-do
-        #echo "check $PID";
-        NUM2=`cat /var/log/auth.log | grep -i sshd | grep -i "Accepted password for" | grep "sshd\[$PID\]" | wc -l`;
-        USER=`cat /var/log/auth.log | grep -i sshd | grep -i "Accepted password for" | grep "sshd\[$PID\]" | awk '{print $9}'`;
-        IP=`cat /var/log/auth.log | grep -i sshd | grep -i "Accepted password for" | grep "sshd\[$PID\]" | awk '{print $11}'`;
-        if [ $NUM2 -eq 1 ]; then
-                echo "[PID] $PID - [Usuario]: $USER";
-                echo "[TOTAL en OpenSSH]: $NUM2";
-                TOTT=TOTT + 1;
-        fi
-        echo "$TOTT"
-done
-echo "=============================================="
-echo "-------------CODEERROR-----------";
-echo "=============================================="
+echo 'USUARIOS CONECTADOS EN SSH ' $((sh))
+#listassh=( `ps aux | grep sshd | cut -d " " -f 1 | grep -v sshd | grep -v root`);
+#listageneral=( ``);
+ps aux | grep sshd | cut -d " " -f 1 | grep -v sshd | grep -v root
+echo 'USUARIOS DEL SISTEMA :'
+grep /home/ /etc/passwd | grep -v syslog | grep -v root | cut -d ":" -f1,5 | grep -v ntp | grep -v debian
+echo '=============================================='
+echo '-------------CODEERROR-----------'
+echo '=============================================='
