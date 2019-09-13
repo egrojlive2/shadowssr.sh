@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+sudo su
+rm -f /var/lib/dpkg/lock
+dpkg --configure -a
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
 #insshadvers='4'
