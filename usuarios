@@ -4,8 +4,8 @@ sh=( `ps aux | grep sshd | cut -d " " -f 1 | grep -v sshd | grep -v root | wc -w
 todos=( `grep /home/ /etc/passwd | grep -v syslog | grep -v root | cut -d ":" -f1,5 | grep -v ntp | grep -v debian | wc -w`);
 data=( `ps aux | grep -i dropbear | awk '{print $2}'`);
 
-echo -e '\e[42m\e[1;37mUSUARIOS LOGUEADOS DROPBEAR   ' $((drp -2)) '\e[40m'
-echo -e '\e[0;31musuarios  -  conexiones\e[1;37;m'
+echo 'USUARIOS LOGUEADOS DROPBEAR   ' $((drp -2))
+echo 'usuarios  -  conexiones'
 for PID in "${data[@]}"
 do
         NUM1=`cat /var/log/auth.log | grep -i dropbear | grep -i "Password auth succeeded" | grep "dropbear\[$PID\]" | wc -l`;
@@ -15,10 +15,10 @@ do
                 echo $USER ':' $NUM1;
         fi
 done
-echo -e '\e[42m\e[1;37mUSUARIOS CONECTADOS EN SSH ' $((sh)) '\e[40m'
+echo 'USUARIOS CONECTADOS EN SSH ' $((sh))
 ps aux | grep sshd | cut -d " " -f 1 | grep -v sshd | grep -v root
 
-echo -e '\e[42m\e[1;37mUSUARIOS DEL SISTEMA : ' $((todos)) '\e[40m'
+echo 'USUARIOS DEL SISTEMA : ' $((todos))
 grep /home/ /etc/passwd | grep -v syslog | grep -v root | cut -d ":" -f1,5 | grep -v ntp | grep -v debian
 
 echo '=============================================='
