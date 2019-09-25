@@ -22,5 +22,5 @@ echo 'USUARIOS DEL SISTEMA : ' $((todos))
 grep /home/ /etc/passwd | grep -v syslog | grep -v root | cut -d ":" -f1,5 | grep -v ntp | grep -v debian
 
 echo '=============================================='
-echo '-------------CODEERROR-----------'
+echo '>>>>>PANEL CODEERROR<<<<<'
 echo '=============================================='
