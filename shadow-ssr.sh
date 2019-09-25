@@ -1,36 +1,6 @@
 #!/usr/bin/env bash
-sudo su
-rm -f /var/lib/dpkg/lock
-dpkg --configure -a
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
-#insshadvers='4'
-#shadowsocksport='8388'
-#
-# Auto install Shadowsocks Server (all version)
-#
-# Copyright (C) 2016-2019 Teddysun <i@teddysun.com>
-#
-# System Required:  CentOS 6+, Debian7+, Ubuntu12+
-#
-# Reference URL:
-# https://github.com/shadowsocks/shadowsocks
-# https://github.com/shadowsocks/shadowsocks-go
-# https://github.com/shadowsocks/shadowsocks-libev
-# https://github.com/shadowsocks/shadowsocks-windows
-# https://github.com/shadowsocksr-rm/shadowsocksr
-# https://github.com/shadowsocksrr/shadowsocksr
-# https://github.com/shadowsocksrr/shadowsocksr-csharp
-#
-# Thanks:
-# @clowwindy  <https://twitter.com/clowwindy>
-# @breakwa11  <https://twitter.com/breakwa11>
-# @cyfdecyf   <https://twitter.com/cyfdecyf>
-# @madeye     <https://github.com/madeye>
-# @linusyang  <https://github.com/linusyang>
-# @Akkariiin  <https://github.com/Akkariiin>
-# 
-# Intro:  https://teddysun.com/486.html
 
 red='\033[0;31m'
 green='\033[0;32m'
@@ -460,7 +430,7 @@ if   [ "${selected}" == "1" ]; then
     "server":"0.0.0.0",
     "server_port":${shadowsocksport},
     "local_address":"127.0.0.1",
-    "local_port":1084,
+    "local_port":1081,
     "password":"${shadowsockspwd}",
     "timeout":300,
     "method":"${shadowsockscipher}",
@@ -477,7 +447,7 @@ elif [ "${selected}" == "2" ]; then
     "server_ipv6":"::",
     "server_port":${shadowsocksport},
     "local_address":"127.0.0.1",
-    "local_port":1081,
+    "local_port":1080,
     "password":"${shadowsockspwd}",
     "timeout":120,
     "method":"${shadowsockscipher}",
@@ -1096,12 +1066,21 @@ install_completed_libev(){
 
 qr_generate_python(){
     if [ "$(command -v qrencode)" ]; then
-        #generar qr tmp=echo -n "chacha20:prueba@80.211.55.183:8388" | base64
-        local tmp=$(echo -n "${shadowsockscipher}:${shadowsockspwd}@${IP}:${shadowsocksport}" | base64 -w0)
-        local qr_code="ss://${tmp}"
+        #generar qr tmp=echo "chacha20:prueba@80.211.55.183:8388" | base64 -w0 > ggg
+        #echo "ss://" > ggg
+        #echo "${shadowsockscipher}:${shadowsockspwd}@$(get_ip):${shadowsocksport}" | base64 -w0 >> ggg
+       local tmp1=$(echo -n "${shadowsockspwd}" | base64 -w0 | sed 's/=//g;s/\//_/g;s/+/-/g')
+       local tmp2=$(echo "${shadowsockscipher}:${tmp1}@$(get_ip):${shadowsocksport}#CODEERR0R" | base64 -w0)
+       local qr_code="ss://${tmp2}"
+       clear
+       echo "ok" > ggg
+       echo $qr_code >> ggg
+        #echo "$tmp1" >> ggg
+        #cat ggg
+        #local qr_code="ss://${tmp1}"
         #echo
         #echo "Your QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients)"
-        echo $qr_code > ggg
+        #echo $qr_code > ggg
         #echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_python_qr.png
         #echo "Your QR Code has been saved as a PNG file path:"
         #echo -e "${green} ${cur_dir}/shadowsocks_python_qr.png ${plain}"
@@ -1126,11 +1105,12 @@ qr_generate_r(){
 
 qr_generate_go(){
     if [ "$(command -v qrencode)" ]; then
-        local tmp=$(echo -n "${shadowsockscipher}:${shadowsockspwd}@${IP}:${shadowsocksport}" | base64 -w0)
+        local tmp=$(echo -n "${shadowsockscipher}:${shadowsockspwd}'@'${IP}:${shadowsocksport}" | base64 -w0)
         local qr_code="ss://${tmp}"
         #echo
         #echo "Your QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients)"
-        echo $qr_code > ggg
+        echo "prueba" > ggg
+        echo "${qr_code}" >> ggg
         #echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_go_qr.png
         #echo "Your QR Code has been saved as a PNG file path:"
         #echo -e "${green} ${cur_dir}/shadowsocks_go_qr.png ${plain}"
@@ -1139,11 +1119,11 @@ qr_generate_go(){
 
 qr_generate_libev(){
     if [ "$(command -v qrencode)" ]; then
-        local tmp=$(echo -n "${shadowsockscipher}:${shadowsockspwd}@${IP}:${shadowsocksport}" | base64 -w0)
+        local tmp=$(echo -n "${shadowsockscipher}:${shadowsockspwd}'@'${IP}:${shadowsocksport}" | base64 -w0)
         local qr_code="ss://${tmp}"
         #echo
         #echo "Your QR Code: (For Shadowsocks Windows, OSX, Android and iOS clients)"
-        echo $qr_code > ggg
+        echo "${qr_code}" > ggg
         #generar png qr echo -n "jorge" | qrencode -s8 -o ~/qr.png
         #echo -n "${qr_code}" | qrencode -s8 -o ${cur_dir}/shadowsocks_libev_qr.png
         #echo "Your QR Code has been saved as a PNG file path:"
