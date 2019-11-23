@@ -4,7 +4,7 @@ sh=( `ps aux | grep sshd | cut -d " " -f 1 | grep -v sshd | grep -v root | wc -w
 todos=( `grep /home/ /etc/passwd | grep -v syslog | grep -v root | cut -d ":" -f1,5 | grep -v ntp | grep -v debian | wc -w`);
 data=( `ps aux | grep -i dropbear | awk '{print $2}'`);
 
-if [ $drp -le 0 ];
+if [ $drp -le 2 ];
 then
 echo 'USUARIOS LOGUEADOS DROPBEAR   ' 0
 else
