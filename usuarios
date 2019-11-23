@@ -8,7 +8,7 @@ if [ $drp -le 2 ];
 then
 echo 'USUARIOS LOGUEADOS DROPBEAR   ' 0
 else
-echo 'USUARIOS LOGUEADOS DROPBEAR   ' $((drp -2))
+echo 'USUARIOS LOGUEADOS DROPBEAR   ' $((drp -4))
 fi
 echo 'usuarios  -  conexiones'
 for PID in "${data[@]}"
