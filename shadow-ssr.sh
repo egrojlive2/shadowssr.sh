@@ -458,7 +458,7 @@ elif [ "${selected}" == "2" ]; then
     "redirect":"",
     "dns_ipv6":false,
     "fast_open":${fast_open},
-    "workers":1
+    "workers":0
 }
 EOF
 elif [ "${selected}" == "3" ]; then
