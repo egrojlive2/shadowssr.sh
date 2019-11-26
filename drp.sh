@@ -6,7 +6,7 @@ cat > /etc/default/dropbear<<-EOF
 NO_START=0
     
 # the TCP port that Dropbear listens on
-DROPBEAR_PORT=443
+DROPBEAR_PORT=666
 
 # any additional arguments for Dropbear
 DROPBEAR_EXTRA_ARGS=""
