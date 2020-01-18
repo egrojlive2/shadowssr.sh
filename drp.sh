@@ -1,6 +1,3 @@
-#!/usr/bin/env bash
-apt-get install dropbear -y
-cat > /etc/default/dropbear<<-EOF
 #disabled because OpenSSH is installed
 # change to NO_START=0 to enable Dropbear
 NO_START=0
@@ -24,5 +21,3 @@ DROPBEAR_BANNER="/etc/issue.net"
 # Receive window size - this is a tradeoff between memory and
 # network performance
 DROPBEAR_RECEIVE_WINDOW=65536
-EOF
-service dropbear restart
