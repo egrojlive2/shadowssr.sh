@@ -1,26 +1,21 @@
-vid=(VideoView)findViewById(R.id.vid);
-		vid.setOnCompletionListener(new MediaPlayer.OnCompletionListener(){
-			@Override
-			public void onCompletion(MediaPlayer p1){
-				vid.start();
-			}
-		});
+
+    const v0, 0x7f0700b3
+
+    invoke-virtual {p0, v0}, Lcom/example/prueba2/MainActivity;->findViewById(I)Landroid/view/View;
+
+    move-result-object v0
+
+    check-cast v0, Landroid/widget/VideoView;
+
+    iput-object v0, p0, Lcom/example/prueba2/MainActivity;->vid:Landroid/widget/VideoView;
 
 
 
-playVideo(vid);
 
+    iget-object v0, p0, Lcom/example/prueba2/MainActivity;->vid:Landroid/widget/VideoView;
 
-public void playVideo(View v) {
-        //MediaController m = new MediaController(this);
-		
-        //vid.setMediaController(m);
+    new-instance v1, Lcom/example/prueba2/MainActivity$1;
 
-        String path = "android.resource://com.soyrojo/"+R.drawable.mp4;
-        Uri u = Uri.parse(path);
+    invoke-direct {v1, p0}, Lcom/example/prueba2/MainActivity$1;-><init>(Lcom/example/prueba2/MainActivity;)V
 
-        vid.setVideoURI(u);
-
-        vid.start();
-
-    }
+    invoke-virtual {v0, v1}, Landroid/widget/VideoView;->setOnCompletionListener(Landroid/media/MediaPlayer$OnCompletionListener;)V
