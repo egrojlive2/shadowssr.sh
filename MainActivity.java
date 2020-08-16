@@ -1,4 +1,4 @@
-.class public Lcom/example/prueba2/MainActivity;
+.class public Lcom/d2rey/ang/ui/MainActivity;
 .super Landroidx/appcompat/app/AppCompatActivity;
 .source "MainActivity.java"
 
@@ -31,32 +31,32 @@
     .line 15
     const v0, 0x7f0a001c
 
-    invoke-virtual {p0, v0}, Lcom/example/prueba2/MainActivity;->setContentView(I)V
+    invoke-virtual {p0, v0}, Lcom/d2rey/ang/ui/MainActivity;->setContentView(I)V
 
     .line 20
     const v0, 0x7f0700b3
 
-    invoke-virtual {p0, v0}, Lcom/example/prueba2/MainActivity;->findViewById(I)Landroid/view/View;
+    invoke-virtual {p0, v0}, Lcom/d2rey/ang/ui/MainActivity;->findViewById(I)Landroid/view/View;
 
     move-result-object v0
 
     check-cast v0, Landroid/widget/VideoView;
 
-    iput-object v0, p0, Lcom/example/prueba2/MainActivity;->vid:Landroid/widget/VideoView;
+    iput-object v0, p0, Lcom/d2rey/ang/ui/MainActivity;->vid:Landroid/widget/VideoView;
 
     .line 21
-    iget-object v0, p0, Lcom/example/prueba2/MainActivity;->vid:Landroid/widget/VideoView;
+    iget-object v0, p0, Lcom/d2rey/ang/ui/MainActivity;->vid:Landroid/widget/VideoView;
 
-    new-instance v1, Lcom/example/prueba2/MainActivity$1;
+    new-instance v1, Lcom/d2rey/ang/ui/MainActivity$1;
 
-    invoke-direct {v1, p0}, Lcom/example/prueba2/MainActivity$1;-><init>(Lcom/example/prueba2/MainActivity;)V
+    invoke-direct {v1, p0}, Lcom/d2rey/ang/ui/MainActivity$1;-><init>(Lcom/d2rey/ang/ui/MainActivity;)V
 
     invoke-virtual {v0, v1}, Landroid/widget/VideoView;->setOnCompletionListener(Landroid/media/MediaPlayer$OnCompletionListener;)V
 
     .line 27
-    iget-object v0, p0, Lcom/example/prueba2/MainActivity;->vid:Landroid/widget/VideoView;
+    iget-object v0, p0, Lcom/d2rey/ang/ui/MainActivity;->vid:Landroid/widget/VideoView;
 
-    invoke-virtual {p0, v0}, Lcom/example/prueba2/MainActivity;->playVideo(Landroid/view/View;)V
+    invoke-virtual {p0, v0}, Lcom/d2rey/ang/ui/MainActivity;->playVideo(Landroid/view/View;)V
 
     .line 28
     return-void
@@ -67,9 +67,9 @@
 
     .prologue
     .line 32
-    iget-object v0, p0, Lcom/example/prueba2/MainActivity;->vid:Landroid/widget/VideoView;
+    iget-object v0, p0, Lcom/d2rey/ang/ui/MainActivity;->vid:Landroid/widget/VideoView;
 
-    invoke-virtual {p0, v0}, Lcom/example/prueba2/MainActivity;->playVideo(Landroid/view/View;)V
+    invoke-virtual {p0, v0}, Lcom/d2rey/ang/ui/MainActivity;->playVideo(Landroid/view/View;)V
 
     .line 33
     invoke-super {p0}, Landroidx/appcompat/app/AppCompatActivity;->onResume()V
@@ -94,12 +94,12 @@
 
     .line 44
     .local v1, "u":Landroid/net/Uri;
-    iget-object v2, p0, Lcom/example/prueba2/MainActivity;->vid:Landroid/widget/VideoView;
+    iget-object v2, p0, Lcom/d2rey/ang/ui/MainActivity;->vid:Landroid/widget/VideoView;
 
     invoke-virtual {v2, v1}, Landroid/widget/VideoView;->setVideoURI(Landroid/net/Uri;)V
 
     .line 46
-    iget-object v2, p0, Lcom/example/prueba2/MainActivity;->vid:Landroid/widget/VideoView;
+    iget-object v2, p0, Lcom/d2rey/ang/ui/MainActivity;->vid:Landroid/widget/VideoView;
 
     invoke-virtual {v2}, Landroid/widget/VideoView;->start()V
 
